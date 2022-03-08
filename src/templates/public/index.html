@@ -7,16 +7,23 @@
     <input type="number" name="stock" placeholder="Disponibilidad">
     <input type="number" name="value" placeholder="Valor">
     <input type="text" name="category" placeholder="Categor[ia">
-    <button type="submit">Enviar</button>
+    <button type="submit">SAVE</button>
 </form>
 
 {% for product in data %}
     {{product.1}}
     <form action="/delete/product/{{product.0}}" method="POST">
         <button>
-            Eliminar
+            DELETE
         </button>
     </form>
+
+    <a href="/update/product/{{product.0}}">
+        UPDATE
+    </a>
+
+{% else %}
+    <p>NO hay productos</p>
 
 {% endfor %}
 {% endblock %}

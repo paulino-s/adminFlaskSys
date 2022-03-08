@@ -29,3 +29,22 @@ class DeleteProductController(MethodView):
             cur.execute("DELETE FROM products WHERE code = %s", (code,))
             cur.connection.commit()
         return redirect("/")
+
+class UpdateProductController(MethodView):
+    def get(self, code):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM products WHERE code = %s", (code,))
+            product = cur.fetchone()
+            return render_template("public/update.html", product = product)
+
+    def post(self, code):
+        productCode = request.form['code']
+        name = request.form['name']
+        stock = request.form['stock']
+        value = request.form['value']
+        print(productCode, name, stock, value)
+
+        with mysql.cursor() as cur:
+            cur.execute("UPDATE products SET code = %s, name = %s, stock = %s, value = %s WHERE  code = %s", (productCode, name, stock, value, code))
+            cur.connection.commit()
+            return f"Editing product {code} works"
