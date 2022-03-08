@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 #Rutas de la aplicaci[on]
 app.add_url_rule(routes["index_route"], view_func=routes["index_controller"])
+app.add_url_rule(routes["delete_route"], view_func=routes["delete_controller"])
 
 
 #ruta del error 404

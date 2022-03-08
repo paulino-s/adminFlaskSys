@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/" method="POST">
+    <input type="number" name="code" placeholder="C[odigo del producto">
+    <input type="text" name="name" placeholder="Nombre del producto">
+    <input type="number" name="stock" placeholder="Disponibilidad">
+    <input type="number" name="value" placeholder="Valor">
+    <input type="text" name="category" placeholder="Categor[ia">
+    <button type="submit">Enviar</button>
+</form>
+
+{% for product in data %}
+    {{product.1}}
+    <form action="/delete/product/{{product.0}}" method="POST">
+        <button>
+            Eliminar
+        </button>
+    </form>
+
+{% endfor %}
+{% endblock %}
