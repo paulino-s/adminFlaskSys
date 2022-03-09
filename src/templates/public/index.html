@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <form action="/" method="POST">
     <input type="number" name="code" placeholder="C[odigo del producto">
     <input type="text" name="name" placeholder="Nombre del producto">
     <input type="number" name="stock" placeholder="Disponibilidad">
     <input type="number" name="value" placeholder="Valor">
-    <input type="text" name="category" placeholder="Categor[ia">
+    <select name="category">
+        <option selected>Seleccionar una categor[ia</option>
+        {% for categorie in categories %}
+            <option value="{{categorie.0}}">{{categorie.1}}</option>
+        {% endfor %}
+    </select>
     <button type="submit">SAVE</button>
 </form>
 
@@ -23,7 +29,7 @@
     </a>
 
 {% else %}
-    <p>NO hay productos</p>
+    <p>No hay productos</p>
 
 {% endfor %}
 {% endblock %}
